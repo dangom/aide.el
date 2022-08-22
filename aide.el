@@ -105,15 +105,16 @@ START and END are selected region boundaries."
   (interactive "r")
   (let* ((region (buffer-substring-no-properties start end))
          (result (aide--openai-complete-string region))
-        original-point)
+         original-point)
     (goto-char (point-max))
     (setq original-point (point))
     (if result
         (progn
-          (insert "\n" result)
-          (fill-paragraph)
-          (let ((x (make-overlay original-point (point-max))))
-            (overlay-put x 'face '(:foreground "orange red")))
+          (insert result)
+          (let ((aide-finish-sign (propertize "&" 'font-lock-face '(:foreground "orange red"))))
+            (insert aide-finish-sign))
+          ;; (let ((x (make-overlay original-point (point-max))))
+          ;;   (overlay-put x 'face '(:foreground "orange red")))
           result)
       (message "Empty result"))))
 
@@ -129,10 +130,12 @@ START and END are selected region boundaries."
     (setq original-point (point))
     (if result
         (progn
-          (insert "\n" result)
-          (fill-paragraph)
-          (let ((x (make-overlay original-point (point-max))))
-            (overlay-put x 'face '(:foreground "orange red")))
+          (insert result)
+          (let ((aide-finish-sign (propertize "&" 'font-lock-face '(:foreground "orange red"))))
+            (insert aide-finish-sign))
+          ;; (let ((x (make-overlay original-point (point-max))))
+          ;;   (overlay-put x 'face '(:foreground "orange red")))
+          (insert " $")
           result)
       (message "Empty result"))))
 
