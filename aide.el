@@ -33,17 +33,17 @@
   :group 'external
   :prefix "aide-")
 
-(defcustom aide-max-tokens 100
+(defcustom aide-max-tokens 512
   "The max-tokens paramater that aide.el sends to OpenAI API."
   :type 'integer
   :group 'aide)
 
-(defcustom aide-temperature 0
+(defcustom aide-temperature 0.5
   "The temperature paramater that aide.el sends to OpenAI API."
   :type 'float
   :group 'aide)
 
-(defcustom aide-top-p 0.1
+(defcustom aide-top-p 1
   "The top-p paramater that aide.el sends to OpenAI API."
   :type 'float
   :group 'aide)
@@ -58,7 +58,7 @@
   :type 'float
   :group 'aide)
 
-(defcustom aide-completions-model "davinci"
+(defcustom aide-completions-model "text-davinci-002"
   "Name of the model used for completions. aide sends requests to
 the OpenAI API endpoint of this model."
   :type 'string
